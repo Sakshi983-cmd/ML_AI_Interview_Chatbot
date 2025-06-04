@@ -1,0 +1,101 @@
+question,answer,level,topic
+What is regularization? (Q1),Techniques like L1 and L2 to reduce overfitting by penalizing large coefficients.,Medium,Data Preprocessing
+What is dropout in neural networks? (Q2),A regularization technique that randomly drops neurons during training to prevent overfitting.,Medium,Feature Engineering
+Explain the difference between supervised and unsupervised learning. (Q3),"Supervised learning uses labeled data, unsupervised learning finds patterns in unlabeled data.",Beginner,Evaluation Metrics
+How does a convolutional neural network (CNN) work? (Q4),"CNNs use convolutional layers to extract features from images, capturing spatial hierarchies.",Beginner,Algorithms
+Explain the difference between supervised and unsupervised learning. (Q5),"Supervised learning uses labeled data, unsupervised learning finds patterns in unlabeled data.",Medium,Feature Engineering
+Explain the bias-variance tradeoff. (Q6),"Tradeoff between model complexity and accuracy; high bias causes underfitting, high variance causes overfitting.",Medium,Machine Learning Basics
+What is gradient descent? (Q7),An optimization algorithm to minimize the loss function by iteratively moving in the direction of steepest descent.,Beginner,Deep Learning
+What is dropout in neural networks? (Q8),A regularization technique that randomly drops neurons during training to prevent overfitting.,Advanced,Deep Learning
+What is the curse of dimensionality? (Q9),Problems caused by high dimensional feature spaces leading to sparse data and model overfitting.,Medium,Deep Learning
+What is overfitting in machine learning? (Q10),"When a model learns the training data too well including noise, failing to generalize to new data.",Medium,Machine Learning Basics
+What is overfitting in machine learning? (Q11),"When a model learns the training data too well including noise, failing to generalize to new data.",Beginner,Statistics
+What is overfitting in machine learning? (Q12),"When a model learns the training data too well including noise, failing to generalize to new data.",Medium,Data Preprocessing
+What is a confusion matrix? (Q13),"A table used to describe the performance of a classification model by showing true positives, false positives, etc.",Medium,Machine Learning Basics
+Explain the difference between supervised and unsupervised learning. (Q14),"Supervised learning uses labeled data, unsupervised learning finds patterns in unlabeled data.",Beginner,Algorithms
+What is regularization? (Q15),Techniques like L1 and L2 to reduce overfitting by penalizing large coefficients.,Beginner,Machine Learning Basics
+Explain the vanishing gradient problem. (Q16),"In deep networks, gradients become very small, making training difficult.",Advanced,Model Deployment
+What is gradient descent? (Q17),An optimization algorithm to minimize the loss function by iteratively moving in the direction of steepest descent.,Advanced,Model Deployment
+What is a confusion matrix? (Q18),"A table used to describe the performance of a classification model by showing true positives, false positives, etc.",Beginner,Feature Engineering
+What is dropout in neural networks? (Q19),A regularization technique that randomly drops neurons during training to prevent overfitting.,Advanced,Statistics
+What is dropout in neural networks? (Q20),A regularization technique that randomly drops neurons during training to prevent overfitting.,Advanced,Algorithms
+Explain the bias-variance tradeoff. (Q21),"Tradeoff between model complexity and accuracy; high bias causes underfitting, high variance causes overfitting.",Medium,Model Deployment
+What is overfitting in machine learning? (Q22),"When a model learns the training data too well including noise, failing to generalize to new data.",Beginner,Neural Networks
+Explain the bias-variance tradeoff. (Q23),"Tradeoff between model complexity and accuracy; high bias causes underfitting, high variance causes overfitting.",Medium,Model Deployment
+What is a confusion matrix? (Q24),"A table used to describe the performance of a classification model by showing true positives, false positives, etc.",Beginner,Evaluation Metrics
+What is regularization? (Q25),Techniques like L1 and L2 to reduce overfitting by penalizing large coefficients.,Medium,Data Preprocessing
+Explain the bias-variance tradeoff. (Q26),"Tradeoff between model complexity and accuracy; high bias causes underfitting, high variance causes overfitting.",Advanced,Statistics
+What is gradient descent? (Q27),An optimization algorithm to minimize the loss function by iteratively moving in the direction of steepest descent.,Medium,Feature Engineering
+What is gradient descent? (Q28),An optimization algorithm to minimize the loss function by iteratively moving in the direction of steepest descent.,Beginner,Algorithms
+What is gradient descent? (Q29),An optimization algorithm to minimize the loss function by iteratively moving in the direction of steepest descent.,Medium,Feature Engineering
+How does a convolutional neural network (CNN) work? (Q30),"CNNs use convolutional layers to extract features from images, capturing spatial hierarchies.",Beginner,Evaluation Metrics
+Explain the bias-variance tradeoff. (Q31),"Tradeoff between model complexity and accuracy; high bias causes underfitting, high variance causes overfitting.",Advanced,Machine Learning Basics
+Explain the difference between supervised and unsupervised learning. (Q32),"Supervised learning uses labeled data, unsupervised learning finds patterns in unlabeled data.",Advanced,Statistics
+What is regularization? (Q33),Techniques like L1 and L2 to reduce overfitting by penalizing large coefficients.,Medium,Model Deployment
+What is regularization? (Q34),Techniques like L1 and L2 to reduce overfitting by penalizing large coefficients.,Advanced,Algorithms
+What is regularization? (Q35),Techniques like L1 and L2 to reduce overfitting by penalizing large coefficients.,Beginner,Evaluation Metrics
+Explain the bias-variance tradeoff. (Q36),"Tradeoff between model complexity and accuracy; high bias causes underfitting, high variance causes overfitting.",Beginner,Evaluation Metrics
+Explain the vanishing gradient problem. (Q37),"In deep networks, gradients become very small, making training difficult.",Beginner,Optimization
+What is dropout in neural networks? (Q38),A regularization technique that randomly drops neurons during training to prevent overfitting.,Advanced,Machine Learning Basics
+Explain the vanishing gradient problem. (Q39),"In deep networks, gradients become very small, making training difficult.",Beginner,Statistics
+What is the curse of dimensionality? (Q40),Problems caused by high dimensional feature spaces leading to sparse data and model overfitting.,Medium,Evaluation Metrics
+What is gradient descent? (Q41),An optimization algorithm to minimize the loss function by iteratively moving in the direction of steepest descent.,Medium,Neural Networks
+What is dropout in neural networks? (Q42),A regularization technique that randomly drops neurons during training to prevent overfitting.,Beginner,Algorithms
+How does a convolutional neural network (CNN) work? (Q43),"CNNs use convolutional layers to extract features from images, capturing spatial hierarchies.",Beginner,Statistics
+How does a convolutional neural network (CNN) work? (Q44),"CNNs use convolutional layers to extract features from images, capturing spatial hierarchies.",Advanced,Statistics
+What is the curse of dimensionality? (Q45),Problems caused by high dimensional feature spaces leading to sparse data and model overfitting.,Beginner,Neural Networks
+What is dropout in neural networks? (Q46),A regularization technique that randomly drops neurons during training to prevent overfitting.,Advanced,Machine Learning Basics
+What is a confusion matrix? (Q47),"A table used to describe the performance of a classification model by showing true positives, false positives, etc.",Medium,Neural Networks
+What is a confusion matrix? (Q48),"A table used to describe the performance of a classification model by showing true positives, false positives, etc.",Advanced,Feature Engineering
+What is regularization? (Q49),Techniques like L1 and L2 to reduce overfitting by penalizing large coefficients.,Advanced,Algorithms
+What is overfitting in machine learning? (Q50),"When a model learns the training data too well including noise, failing to generalize to new data.",Beginner,Statistics
+What is dropout in neural networks? (Q51),A regularization technique that randomly drops neurons during training to prevent overfitting.,Medium,Model Deployment
+How does a convolutional neural network (CNN) work? (Q52),"CNNs use convolutional layers to extract features from images, capturing spatial hierarchies.",Advanced,Feature Engineering
+What is dropout in neural networks? (Q53),A regularization technique that randomly drops neurons during training to prevent overfitting.,Beginner,Data Preprocessing
+Explain the vanishing gradient problem. (Q54),"In deep networks, gradients become very small, making training difficult.",Beginner,Feature Engineering
+What is overfitting in machine learning? (Q55),"When a model learns the training data too well including noise, failing to generalize to new data.",Medium,Data Preprocessing
+What is regularization? (Q56),Techniques like L1 and L2 to reduce overfitting by penalizing large coefficients.,Beginner,Deep Learning
+How does a convolutional neural network (CNN) work? (Q57),"CNNs use convolutional layers to extract features from images, capturing spatial hierarchies.",Medium,Machine Learning Basics
+Explain the bias-variance tradeoff. (Q58),"Tradeoff between model complexity and accuracy; high bias causes underfitting, high variance causes overfitting.",Beginner,Deep Learning
+Explain the vanishing gradient problem. (Q59),"In deep networks, gradients become very small, making training difficult.",Advanced,Feature Engineering
+What is overfitting in machine learning? (Q60),"When a model learns the training data too well including noise, failing to generalize to new data.",Advanced,Neural Networks
+Explain the bias-variance tradeoff. (Q61),"Tradeoff between model complexity and accuracy; high bias causes underfitting, high variance causes overfitting.",Beginner,Statistics
+What is a confusion matrix? (Q62),"A table used to describe the performance of a classification model by showing true positives, false positives, etc.",Advanced,Machine Learning Basics
+What is dropout in neural networks? (Q63),A regularization technique that randomly drops neurons during training to prevent overfitting.,Beginner,Data Preprocessing
+Explain the vanishing gradient problem. (Q64),"In deep networks, gradients become very small, making training difficult.",Beginner,Statistics
+Explain the bias-variance tradeoff. (Q65),"Tradeoff between model complexity and accuracy; high bias causes underfitting, high variance causes overfitting.",Medium,Data Preprocessing
+What is dropout in neural networks? (Q66),A regularization technique that randomly drops neurons during training to prevent overfitting.,Medium,Model Deployment
+Explain the difference between supervised and unsupervised learning. (Q67),"Supervised learning uses labeled data, unsupervised learning finds patterns in unlabeled data.",Medium,Algorithms
+What is overfitting in machine learning? (Q68),"When a model learns the training data too well including noise, failing to generalize to new data.",Advanced,Statistics
+What is the curse of dimensionality? (Q69),Problems caused by high dimensional feature spaces leading to sparse data and model overfitting.,Advanced,Model Deployment
+What is dropout in neural networks? (Q70),A regularization technique that randomly drops neurons during training to prevent overfitting.,Beginner,Machine Learning Basics
+How does a convolutional neural network (CNN) work? (Q71),"CNNs use convolutional layers to extract features from images, capturing spatial hierarchies.",Advanced,Evaluation Metrics
+What is gradient descent? (Q72),An optimization algorithm to minimize the loss function by iteratively moving in the direction of steepest descent.,Beginner,Machine Learning Basics
+What is the curse of dimensionality? (Q73),Problems caused by high dimensional feature spaces leading to sparse data and model overfitting.,Medium,Statistics
+What is a confusion matrix? (Q74),"A table used to describe the performance of a classification model by showing true positives, false positives, etc.",Beginner,Data Preprocessing
+Explain the vanishing gradient problem. (Q75),"In deep networks, gradients become very small, making training difficult.",Advanced,Statistics
+Explain the vanishing gradient problem. (Q76),"In deep networks, gradients become very small, making training difficult.",Beginner,Model Deployment
+What is dropout in neural networks? (Q77),A regularization technique that randomly drops neurons during training to prevent overfitting.,Advanced,Optimization
+How does a convolutional neural network (CNN) work? (Q78),"CNNs use convolutional layers to extract features from images, capturing spatial hierarchies.",Beginner,Deep Learning
+How does a convolutional neural network (CNN) work? (Q79),"CNNs use convolutional layers to extract features from images, capturing spatial hierarchies.",Beginner,Neural Networks
+What is dropout in neural networks? (Q80),A regularization technique that randomly drops neurons during training to prevent overfitting.,Medium,Statistics
+How does a convolutional neural network (CNN) work? (Q81),"CNNs use convolutional layers to extract features from images, capturing spatial hierarchies.",Beginner,Optimization
+Explain the bias-variance tradeoff. (Q82),"Tradeoff between model complexity and accuracy; high bias causes underfitting, high variance causes overfitting.",Advanced,Optimization
+What is overfitting in machine learning? (Q83),"When a model learns the training data too well including noise, failing to generalize to new data.",Beginner,Statistics
+Explain the bias-variance tradeoff. (Q84),"Tradeoff between model complexity and accuracy; high bias causes underfitting, high variance causes overfitting.",Beginner,Model Deployment
+What is gradient descent? (Q85),An optimization algorithm to minimize the loss function by iteratively moving in the direction of steepest descent.,Beginner,Model Deployment
+What is dropout in neural networks? (Q86),A regularization technique that randomly drops neurons during training to prevent overfitting.,Beginner,Feature Engineering
+What is a confusion matrix? (Q87),"A table used to describe the performance of a classification model by showing true positives, false positives, etc.",Beginner,Model Deployment
+How does a convolutional neural network (CNN) work? (Q88),"CNNs use convolutional layers to extract features from images, capturing spatial hierarchies.",Medium,Machine Learning Basics
+Explain the difference between supervised and unsupervised learning. (Q89),"Supervised learning uses labeled data, unsupervised learning finds patterns in unlabeled data.",Medium,Neural Networks
+What is dropout in neural networks? (Q90),A regularization technique that randomly drops neurons during training to prevent overfitting.,Medium,Machine Learning Basics
+How does a convolutional neural network (CNN) work? (Q91),"CNNs use convolutional layers to extract features from images, capturing spatial hierarchies.",Medium,Evaluation Metrics
+Explain the vanishing gradient problem. (Q92),"In deep networks, gradients become very small, making training difficult.",Advanced,Optimization
+How does a convolutional neural network (CNN) work? (Q93),"CNNs use convolutional layers to extract features from images, capturing spatial hierarchies.",Advanced,Deep Learning
+What is regularization? (Q94),Techniques like L1 and L2 to reduce overfitting by penalizing large coefficients.,Beginner,Model Deployment
+Explain the bias-variance tradeoff. (Q95),"Tradeoff between model complexity and accuracy; high bias causes underfitting, high variance causes overfitting.",Medium,Neural Networks
+What is dropout in neural networks? (Q96),A regularization technique that randomly drops neurons during training to prevent overfitting.,Advanced,Optimization
+Explain the bias-variance tradeoff. (Q97),"Tradeoff between model complexity and accuracy; high bias causes underfitting, high variance causes overfitting.",Beginner,Neural Networks
+What is dropout in neural networks? (Q98),A regularization technique that randomly drops neurons during training to prevent overfitting.,Medium,Machine Learning Basics
+What is overfitting in machine learning? (Q99),"When a model learns the training data too well including noise, failing to generalize to new data.",Beginner,Evaluation Metrics
+Explain the bias-variance tradeoff. (Q100),"Tradeoff between model complexity and accuracy; high bias causes underfitting, high variance causes overfitting.",Advanced,Neural Networks
