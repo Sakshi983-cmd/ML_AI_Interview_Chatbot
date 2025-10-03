@@ -1,6 +1,12 @@
 # ML Interview Pro 🤖
 
-AI-powered ML interview preparation chatbot for freshers.
+AI-powered ML interview preparation chatbot for freshers.ML Interview chatbot is a smart AI-powered interview preparation chatbot designed for Machine Learning freshers.
+It provides personalized guidance, code examples, formulas, and career tips in a fresher-friendly way.
+
+🤖 AI Model Used: LLaMA 3.1 8B Instant via Groq API
+🚀 How it Works: The chatbot uses transformer-based language models to understand your questions and generate context-aware responses tailored for ML interview preparation.
+
+Unlock ML concepts, practice questions, and real-world insights effortlessly.
 
 ---
 
@@ -81,6 +87,7 @@ graph TD
     B2 --> G2[NLP Preprocessing]
     C2 --> H2[Transformer Model]
     C2 --> I2[Autoregressive Generation]
+
 
 
 
