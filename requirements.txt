@@ -1,0 +1,8 @@
+streamlit>=1.28.0
+groq==0.3.0
+requests>=2.25.1
+streamlit-lottie>=0.0.5
+plotly>=5.13.0
+pandas>=1.5.0
+numpy>=1.21.0
+scikit-learn>=1.0.0
