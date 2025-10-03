@@ -15,9 +15,6 @@ AI-powered ML interview preparation chatbot for freshers.
 ---
 
 <div align="center">
-[![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white)](https://streamlit.io/)
-[![HuggingFace](https://img.shields.io/badge/HuggingFace-FFD21F?style=for-the-badge&logo=huggingface&logoColor=black)](https://huggingface.co/)
-[![License](https://img.shields.io/github/license/Sakshi983-cmd/-pdf-qa-bot?style=for-the-badge)](./LICENSE)
 [![GitHub Stars](https://img.shields.io/github/stars/Sakshi983-cmd/-pdf-qa-bot?style=social)](https://github.com/Sakshi983-cmd/-pdf-qa-bot/stargazers)
 </div>
 
@@ -54,3 +51,18 @@ graph TD
     B --> I[📚 Teacher]
     B --> J[💼 Interviewer]
 
+
+graph LR
+    A[User Input] --> B[Input Processing]
+    B --> C[LLM Engine]
+    C --> D[Response Generation]
+    D --> E[Learning Analytics]
+    
+    B --> F[Tokenization]
+    B --> G[NLP Preprocessing]
+    
+    C --> H[Transformer Model]
+    C --> I[Autoregressive Generation]
+    
+    E --> J[Concept Tracking]
+    E --> K[Progress Monitoring]
