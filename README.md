@@ -5,10 +5,6 @@ AI-powered ML interview preparation chatbot for freshers.
 ---
 
 <div align="center">
-  <img src="assets/DEMO_ML.jpg" width="80%">
-</div>
-
-<div align="center">
   <img src="assets/practical.jpg" width="80%">
 </div>
 
@@ -20,9 +16,6 @@ Author: <b>Sakshi Tiwari</b>
 </p>
 
 ---
-<div align="center">
-  <img src="assets/DEMO_ML.jpg" width="80%">
-</div>
 
 ## 🦾 Introduction
 
@@ -40,6 +33,19 @@ It provides personalized guidance, code examples, formulas, and career tips in a
 💡 **Real-World Examples**  
 🏗️ **Modular Architecture**  
 📊 **Progress Tracking & Analytics**
+
+---
+
+## 🎯 Purpose
+
+This project helps ML freshers prepare for interviews by simulating real Q&A sessions, offering conceptual clarity, and guiding them through practical implementation and math fundamentals.  
+It’s built to be intuitive, empathetic, and technically sound — just like a real mentor.
+
+---
+
+<div align="center">
+  <img src="assets/DEMO_ML.jpg" width="80%">
+</div>
 
 ---
 
