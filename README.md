@@ -5,7 +5,7 @@ AI-powered ML interview preparation chatbot for freshers.
 ---
 
 <div align="center">
-  <img src="./assets/undraw_typing-code_6t2b.svg" width="120">
+  <img src="./assets/DEMO_ML.jpg" width="80%">
 </div>
 
 <p align="center">
@@ -36,33 +36,33 @@ It provides personalized guidance, code examples, formulas, and career tips in a
 
 ## 📊 System Workflow
 
-### DEMO_ML Flow 1
-
 ```mermaid
 graph TD
-    A[User Query] --> B[Persona Selection]
-    B --> C[LLM Processing]
-    C --> D[Context-Aware Response]
-    D --> E[Interactive Learning]
-    E --> F[Progress Tracking]
-    
-    B --> G[👨‍🏫 Mentor]
-    B --> H[👨‍💻 Coder]
-    B --> I[📚 Teacher]
-    B --> J[💼 Interviewer]
+    %% DEMO_ML Flow 1
+    A1[User Query] --> B1[Persona Selection]
+    B1 --> C1[LLM Processing]
+    C1 --> D1[Context-Aware Response]
+    D1 --> E1[Interactive Learning]
+    E1 --> F1[Progress Tracking]
+    F1 --> Z[❌ ERROR: Progress Monitoring Failed]
 
+    %% Persona Branches
+    B1 --> G1[👨‍🏫 Mentor]
+    B1 --> H1[👨‍💻 Coder]
+    B1 --> I1[📚 Teacher]
+    B1 --> J1[💼 Interviewer]
 
-graph LR
-    A[User Input] --> B[Input Processing]
-    B --> C[LLM Engine]
-    C --> D[Response Generation]
-    D --> E[Learning Analytics]
-    
-    B --> F[Tokenization]
-    B --> G[NLP Preprocessing]
-    
-    C --> H[Transformer Model]
-    C --> I[Autoregressive Generation]
-    
-    E --> J[Concept Tracking]
-    E --> K[Progress Monitoring]
+    %% Learning Analytics Flow
+    A2[User Input] --> B2[Input Processing]
+    B2 --> C2[LLM Engine]
+    C2 --> D2[Response Generation]
+    D2 --> E2[Learning Analytics]
+    E2 --> J2[Concept Tracking]
+    E2 --> K2[Progress Monitoring]
+    K2 --> Z[❌ ERROR: Progress Monitoring Failed]
+
+    %% NLP Subprocesses
+    B2 --> F2[Tokenization]
+    B2 --> G2[NLP Preprocessing]
+    C2 --> H2[Transformer Model]
+    C2 --> I2[Autoregressive Generation]
