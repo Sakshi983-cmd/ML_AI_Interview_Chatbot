@@ -20,6 +20,9 @@ Author: <b>Sakshi Tiwari</b>
 </p>
 
 ---
+<div align="center">
+  <img src="assets/DEMO_ML.jpg" width="80%">
+</div>
 
 ## 🦾 Introduction
 
@@ -72,3 +75,4 @@ graph TD
     B2 --> G2[NLP Preprocessing]
     C2 --> H2[Transformer Model]
     C2 --> I2[Autoregressive Generation]
+
