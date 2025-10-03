@@ -5,18 +5,14 @@ AI-powered ML interview preparation chatbot for freshers.
 ---
 
 <div align="center">
-  <img src="./assets/DEMO_ML.jpg" width="80%">
+  <img src="assets/DEMO_ML.jpg" width="80%">
 </div>
-
-<p align="center">
-  <img src="./assets/practical.jpg" width="80%">
-</p>
-
----
 
 <div align="center">
-[![GitHub Stars](https://img.shields.io/github/stars/Sakshi983-cmd/-pdf-qa-bot?style=social)](https://github.com/Sakshi983-cmd/-pdf-qa-bot/stargazers)
+  <img src="assets/practical.jpg" width="80%">
 </div>
+
+---
 
 <p align="center">
 🤖 <b>ML Interview Pro</b><br>
@@ -31,6 +27,16 @@ Author: <b>Sakshi Tiwari</b>
 It provides personalized guidance, code examples, formulas, and career tips in a fresher-friendly way.
 
 > Unlock ML concepts, practice questions, and real-world insights effortlessly.
+
+---
+
+## ✨ Features
+
+🎭 **Multiple Personas**: Mentor, Coder, Teacher, Interviewer  
+🧠 **Fresher-Friendly Guidance**  
+💡 **Real-World Examples**  
+🏗️ **Modular Architecture**  
+📊 **Progress Tracking & Analytics**
 
 ---
 
