@@ -7,48 +7,44 @@ import plotly.express as px
 import os
 from datetime import datetime
 
-# SECURE .env loading without external package
+# SECURE .env loading with better error handling
 def load_env_secure():
     try:
+        # Try to get from environment variables first
+        api_key = os.getenv('GROQ_API_KEY')
+        if api_key:
+            print("✅ API Key loaded from environment variables")
+            return api_key
+            
+        # Fallback to .env file
         with open('.env', 'r') as f:
             for line in f:
                 line = line.strip()
-                if line and not line.startswith('#') and 'GROQ_API_KEY' in line:
+                if line and not line.startswith('#') and '=' in line:
                     key, value = line.split('=', 1)
-                    os.environ[key.strip()] = value.strip()
-                    print(f"✅ API Key loaded from .env: {key.strip()}")
-                    return value.strip()
-        print("❌ GROQ_API_KEY not found in .env file")
+                    if key.strip() == 'GROQ_API_KEY':
+                        print(f"✅ API Key loaded from .env file")
+                        return value.strip()
+        print("❌ GROQ_API_KEY not found")
         return None
     except FileNotFoundError:
         print("❌ .env file not found")
         return None
     except Exception as e:
-        print(f"❌ Error loading .env: {e}")
+        print(f"❌ Error loading environment: {e}")
         return None
 
 # Load API key at startup
 API_KEY = load_env_secure()
 
-# LLM Client Setup - UPDATED WITH NEW MODELS
+# LLM Client Setup - SIMPLIFIED
 def get_llm_client():
     if not API_KEY:
-        st.sidebar.error("🔑 API Key not loaded. Check .env file")
         return None
     
     try:
         client = groq.Client(api_key=API_KEY)
-        
-        # Quick connection test with NEW MODEL
-        test_response = client.chat.completions.create(
-            model="llama-3.1-8b-instant",  # ✅ UPDATED MODEL
-            messages=[{"role": "user", "content": "Say 'Connected'"}],
-            max_tokens=5
-        )
-        
-        st.sidebar.success("✅ API Connected Successfully!")
         return client
-        
     except Exception as e:
         st.sidebar.error(f"❌ API Error: {str(e)}")
         return None
@@ -61,7 +57,7 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Custom CSS with Animations
+# Custom CSS with Animations (SAME AS BEFORE)
 st.markdown("""
 <style>
     @import url('https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css');
@@ -165,29 +161,6 @@ st.markdown("""
         border-left: 5px solid #FF6B6B;
     }
     
-    .persona-btn {
-        width: 100%;
-        padding: 15px;
-        margin: 5px 0;
-        border: none;
-        border-radius: 15px;
-        background: rgba(255,255,255,0.1);
-        color: white;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        text-align: center;
-    }
-    
-    .persona-btn:hover {
-        background: rgba(255,255,255,0.2);
-        transform: translateY(-3px);
-    }
-    
-    .persona-btn.active {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        transform: scale(1.05);
-    }
-    
     .quick-chip {
         display: inline-block;
         background: rgba(255,255,255,0.15);
@@ -231,15 +204,6 @@ st.markdown("""
         margin: 10px 0;
     }
     
-    .book-suggestion {
-        background: linear-gradient(135deg, #96CEB4 0%, #4ECDC4 100%);
-        color: white;
-        padding: 15px;
-        border-radius: 15px;
-        margin: 10px 0;
-        animation: fadeIn 1s ease;
-    }
-    
     .api-status {
         padding: 10px;
         border-radius: 10px;
@@ -262,90 +226,52 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-# Enhanced LLM Response with Fresher Focus - UPDATED MODEL
+# Enhanced LLM Response with Fresher Focus - SIMPLIFIED
 def get_ai_response(user_input, persona, chat_history):
     client = get_llm_client()
     if not client:
-        return "🚧 **API Connection Issue**\n\nPlease check your .env file and ensure:\n- Groq API key is correct\n- Internet connection is working\n- API key has sufficient credits\n\nError: Unable to connect to AI service."
-    
-    # Fresher-focused prompts with real-world connections
+        return "🚧 **API Connection Issue**\n\nPlease check your .env file and ensure:\n- GROQ_API_KEY is set in environment variables or .env file\n- Internet connection is working\n- API key is valid\n\nYou can get free API key from: https://console.groq.com"
+
+    # Fresher-focused prompts
     persona_prompts = {
-        "👨‍🏫 Mentor": """You are an experienced ML mentor who guides freshers. 
-        Focus on:
-        - Explain concepts like you're talking to a beginner
-        - Share real-world examples and applications
-        - Mention common mistakes freshers make
-        - Suggest learning resources and books
-        - Provide mathematical formulas with explanations
-        - Give career advice for ML freshers
-        - Be encouraging and supportive""",
-        
-        "👨‍💻 Coder": """You are a practical ML engineer focused on implementation.
-        Focus on:
-        - Provide actual Python code snippets
-        - Explain libraries like sklearn, tensorflow, pytorch
-        - Discuss real projects and datasets
-        - Give debugging tips for common errors
-        - Share best practices from industry
-        - Talk about deployment and MLOps""",
-        
-        "📚 Teacher": """You are a patient teacher who breaks down complex topics.
-        Focus on:
-        - Step-by-step explanations
-        - Visual analogies and examples
-        - Mathematical foundations with simple explanations
-        - Learning roadmaps and study plans
-        - Book recommendations and online courses
-        - Practice exercises and interview questions""",
-        
-        "💼 Interviewer": """You are a tech interviewer at FAANG companies.
-        Focus on:
-        - Ask challenging but fair interview questions
-        - Evaluate answers and provide feedback
-        - Discuss system design for ML systems
-        - Talk about real business use cases
-        - Focus on problem-solving approach
-        - Give tips to stand out in interviews"""
+        "👨‍🏫 Mentor": "You are an experienced ML mentor guiding freshers. Explain concepts simply with real-world examples, common mistakes, and learning resources.",
+        "👨‍💻 Coder": "You are a practical ML engineer. Provide Python code, explain libraries, debugging tips, and real project examples.",
+        "📚 Teacher": "You are a patient teacher. Break down complex topics step-by-step with analogies and practice exercises.",
+        "💼 Interviewer": "You are a tech interviewer. Ask relevant questions, evaluate answers, and provide interview tips."
     }
     
     # Build conversation context
     messages = [
-        {"role": "system", "content": f"{persona_prompts[persona]}\n\nCurrent Date: {datetime.now().strftime('%Y-%m-%d')}\nRemember: You're helping ML freshers with real problems they face."}
+        {"role": "system", "content": f"{persona_prompts[persona]}\n\nCurrent Date: {datetime.now().strftime('%Y-%m-%d')}\nYou're helping ML freshers with real problems."}
     ]
     
-    # Add conversation history for context
-    for msg in chat_history[-6:]:
+    # Add limited conversation history
+    for msg in chat_history[-4:]:  # Reduced from 6 to 4
         messages.append({"role": "user" if msg["role"] == "user" else "assistant", "content": msg["content"]})
     
     messages.append({"role": "user", "content": user_input})
     
     try:
         response = client.chat.completions.create(
-            model="llama-3.1-8b-instant",  # ✅ UPDATED MODEL
+            model="llama-3.1-8b-instant",
             messages=messages,
             temperature=0.7,
-            max_tokens=500,
+            max_tokens=800,  # Increased tokens
             stream=False
         )
         return response.choices[0].message.content
     except Exception as e:
-        return f"🚧 **Service Temporarily Unavailable**\n\nI'm experiencing technical difficulties. Please try again in a few moments.\n\nTechnical details: {str(e)}"
+        return f"🚧 **Service Temporarily Unavailable**\n\nPlease try again in a few moments.\n\nError: {str(e)}"
 
-# Initialize Session State
+# Initialize Session State - IMPROVED
 def init_session():
-    default_states = {
-        "messages": [],
-        "persona": "👨‍🏫 Mentor",
-        "user_name": "",
-        "interview_level": "Beginner",
-        "stats": {"questions_asked": 0, "concepts_learned": 0, "formulas_shown": 0}
-    }
-    
-    for key, value in default_states.items():
-        if key not in st.session_state:
-            st.session_state[key] = value
+    if "initialized" not in st.session_state:
+        st.session_state.initialized = True
+        st.session_state.messages = []
+        st.session_state.persona = "👨‍🏫 Mentor"
+        st.session_state.stats = {"questions_asked": 0, "concepts_learned": 0, "formulas_shown": 0}
 
-# Fresher Problems Database
+# Fresher Problems Database (SAME AS BEFORE)
 FRESHER_PROBLEMS = {
     "🤔 Conceptual": [
         "What exactly is the difference between AI, ML, and DL?",
@@ -377,36 +303,10 @@ FRESHER_PROBLEMS = {
     ]
 }
 
-# Popular ML Formulas
-ML_FORMULAS = {
-    "Linear Regression": "y = β₀ + β₁x₁ + β₂x₂ + ... + βₙxₙ + ε",
-    "Logistic Regression": "P(y=1) = 1 / (1 + e^(-z)) where z = β₀ + β₁x₁ + ...",
-    "Gradient Descent": "θ = θ - α * ∇J(θ)",
-    "CNN Output Size": "(W - F + 2P)/S + 1",
-    "Accuracy": "(TP + TN) / (TP + TN + FP + FN)",
-    "Precision": "TP / (TP + FP)",
-    "Recall": "TP / (TP + FN)",
-    "F1-Score": "2 * (Precision * Recall) / (Precision + Recall)"
-}
-
-# Book Recommendations
-BOOKS = {
-    "Beginner": [
-        "📚 'Hands-On Machine Learning with Scikit-Learn, Keras & TensorFlow' - Aurélien Géron",
-        "📚 'Python Machine Learning' - Sebastian Raschka",
-        "📚 'Introduction to Statistical Learning' - Gareth James et al."
-    ],
-    "Intermediate": [
-        "📚 'Pattern Recognition and Machine Learning' - Christopher Bishop",
-        "📚 'Deep Learning' - Ian Goodfellow, Yoshua Bengio",
-        "📚 'The Hundred-Page Machine Learning Book' - Andriy Burkov"
-    ],
-    "Advanced": [
-        "📚 'Deep Learning with Python' - François Chollet",
-        "📚 'Machine Learning Yearning' - Andrew Ng",
-        "📚 'Mathematics for Machine Learning' - Marc Peter Deisenroth"
-    ]
-}
+def handle_problem_click(problem):
+    """Handle problem button clicks without rerun issues"""
+    st.session_state.messages.append({"role": "user", "content": problem})
+    st.session_state.stats["questions_asked"] += 1
 
 def main():
     init_session()
@@ -420,50 +320,49 @@ def main():
             st.markdown('<div class="api-status api-connected">✅ API Connected</div>', unsafe_allow_html=True)
         else:
             st.markdown('<div class="api-status api-disconnected">❌ API Not Found</div>', unsafe_allow_html=True)
+            st.info("Add GROQ_API_KEY to .env file or environment variables")
         
-        # Persona Selection
+        # Persona Selection - FIXED
         st.markdown("#### 🎭 Choose Your Guide")
         personas = ["👨‍🏫 Mentor", "👨‍💻 Coder", "📚 Teacher", "💼 Interviewer"]
         
-        for persona in personas:
-            if st.button(
-                persona, 
-                use_container_width=True,
-                type="primary" if st.session_state.persona == persona else "secondary"
-            ):
-                st.session_state.persona = persona
-                st.rerun()
+        selected_persona = st.radio(
+            "Select your guide:",
+            personas,
+            index=personas.index(st.session_state.persona),
+            label_visibility="collapsed"
+        )
+        
+        if selected_persona != st.session_state.persona:
+            st.session_state.persona = selected_persona
+            st.rerun()
         
         st.divider()
         
-        # Fresher Problems Quick Access
+        # Fresher Problems Quick Access - FIXED
         st.markdown("#### 🚨 Common Fresher Problems")
         for category, problems in FRESHER_PROBLEMS.items():
             with st.expander(category):
                 for problem in problems:
-                    if st.button(problem, key=problem, use_container_width=True):
-                        st.session_state.messages.append({"role": "user", "content": problem})
-                        st.session_state.stats["questions_asked"] += 1
+                    if st.button(problem, key=f"prob_{problem[:20]}", use_container_width=True):
+                        handle_problem_click(problem)
                         st.rerun()
         
         st.divider()
         
-        # Learning Resources
+        # Learning Resources - FIXED
         st.markdown("#### 📚 Quick Resources")
-        if st.button("🧮 Show ML Formulas", use_container_width=True):
-            st.session_state.messages.append({"role": "user", "content": "Show me important ML formulas with examples"})
-            st.session_state.stats["questions_asked"] += 1
-            st.rerun()
+        resource_options = {
+            "🧮 ML Formulas": "Show me important ML formulas with examples",
+            "📖 Book Suggestions": "Suggest books for ML beginners with details", 
+            "🎯 Study Plan": "Create a 3-month study plan for ML freshers"
+        }
         
-        if st.button("📖 Book Suggestions", use_container_width=True):
-            st.session_state.messages.append({"role": "user", "content": "Suggest books for ML beginners with details"})
-            st.session_state.stats["questions_asked"] += 1
-            st.rerun()
-        
-        if st.button("🎯 Study Plan", use_container_width=True):
-            st.session_state.messages.append({"role": "user", "content": "Create a 3-month study plan for ML freshers"})
-            st.session_state.stats["questions_asked"] += 1
-            st.rerun()
+        for resource, prompt in resource_options.items():
+            if st.button(resource, key=f"res_{resource}", use_container_width=True):
+                st.session_state.messages.append({"role": "user", "content": prompt})
+                st.session_state.stats["questions_asked"] += 1
+                st.rerun()
         
         st.divider()
         
@@ -491,7 +390,7 @@ def main():
                    f'<p>Active Guide</p>'
                    f'</div>', unsafe_allow_html=True)
 
-    # Problem Categories
+    # Problem Categories - FIXED
     st.markdown("### 🚀 What's Troubling You?")
     
     cols = st.columns(4)
@@ -504,10 +403,10 @@ def main():
     
     for i, (title, desc) in enumerate(problem_categories):
         with cols[i]:
-            if st.button(f"**{title}**\n{desc}", use_container_width=True, help=f"Get help with {title.lower()} problems"):
+            if st.button(f"**{title}**\n{desc}", key=f"cat_{i}", use_container_width=True):
                 st.session_state.messages.append({
                     "role": "user", 
-                    "content": f"I need help with {title.lower()} problems. Can you explain with examples and give me practice questions?"
+                    "content": f"I need help with {title.lower()} problems. Can you explain with examples?"
                 })
                 st.session_state.stats["questions_asked"] += 1
                 st.rerun()
@@ -529,7 +428,7 @@ def main():
                        f'<p>{description}</p>'
                        f'</div>', unsafe_allow_html=True)
 
-    # Chat Interface
+    # Chat Interface - FIXED
     st.markdown("### 💬 Interactive Learning Session")
     
     # Display chat messages
@@ -551,42 +450,24 @@ def main():
         # Add user message
         st.session_state.messages.append({"role": "user", "content": prompt})
         
-        # Get AI response with typing animation
+        # Get AI response
         with st.spinner(f"🤖 {st.session_state.persona} is thinking..."):
             ai_response = get_ai_response(prompt, st.session_state.persona, st.session_state.messages)
         
-        # Display response with typing effect
-        message_placeholder = st.empty()
-        displayed_response = ""
-        
-        # Simulate typing animation
-        for char in ai_response:
-            displayed_response += char
-            message_placeholder.markdown(
-                f'<div class="bot-message">'
-                f'<strong>🤖 {st.session_state.persona}:</strong><br>'
-                f'{displayed_response}<span class="typing-animation"></span>'
-                f'</div>', 
-                unsafe_allow_html=True
-            )
-            time.sleep(0.005)
-        
-        # Final message
-        message_placeholder.markdown(
-            f'<div class="bot-message">'
-            f'<strong>🤖 {st.session_state.persona}:</strong><br>{ai_response}'
-            f'</div>', 
-            unsafe_allow_html=True
-        )
-        
+        # Add AI response directly (removed typing animation for stability)
         st.session_state.messages.append({"role": "assistant", "content": ai_response})
         
-        # Update learning stats based on response content
+        # Update learning stats
         if any(keyword in ai_response.lower() for keyword in ['formula', 'equation', 'math']):
             st.session_state.stats["formulas_shown"] += 1
         if any(keyword in ai_response.lower() for keyword in ['concept', 'understand', 'explain']):
             st.session_state.stats["concepts_learned"] += 1
+            
+        st.rerun()
 
 if __name__ == "__main__":
-    main()   
+    main()
+   
       
+      
+        
