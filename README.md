@@ -7,6 +7,9 @@ It provides personalized guidance, code examples, formulas, and career tips in a
 🚀 How it Works: The chatbot uses transformer-based language models to understand your questions and generate context-aware responses tailored for ML interview preparation.
 
 Unlock ML concepts, practice questions, and real-world insights effortlessly.
+### 🔧 LoRA Fine-Tuning
+
+This project includes LoRA-based fine-tuning of a causal LLM (GPT2/LLaMA) using Hugging Face PEFT. We trained adapter layers on a custom ML interview Q&A dataset to generate domain-specific responses. See `fine_tune_lora.py` for training logic and `dataset.json` for examples.
 
 ---
 
@@ -87,6 +90,7 @@ graph TD
     B2 --> G2[NLP Preprocessing]
     C2 --> H2[Transformer Model]
     C2 --> I2[Autoregressive Generation]
+
 
 
 
