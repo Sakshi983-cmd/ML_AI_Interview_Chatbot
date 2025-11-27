@@ -1,17 +1,25 @@
 import streamlit as st
-from utils.resume_parser import extract_text_from_pdf
-from utils.report_generator import generate_pdf
-from langchain_groq import ChatGroq
+
+try:
+    from utils.resume_parser import extract_text_from_pdf
+    from utils.report_generator import generate_pdf
+    from langchain_groq import ChatGroq
+except ImportError as e:
+    st.error(f"Import error: {e}. Check requirements.txt and Re-deploy.")
+    st.stop()
+
 import os
-from dotenv import load_dotenv
 
-load_dotenv()
+# Groq API from Streamlit secrets
+groq_key = st.secrets.get("GROQ_API_KEY")
+if not groq_key or groq_key == "dummy_key_for_test":
+    st.error("GROQ_API_KEY missing in secrets. Add it in Settings > Secrets.")
+    st.stop()
 
-# Groq API (तू बाद में अपना key डाल देना, अभी demo के लिए ये चलेगा)
 llm = ChatGroq(
     model="llama-3.1-70b-versatile",
     temperature=0.7,
-    groq_api_key=os.getenv("GROQ_API_KEY", "gsk_XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")  # तू अपना key डालना
+    groq_api_key=groq_key
 )
 
 st.set_page_config(page_title="ML_AI_Interview_Chatbot", layout="centered")
@@ -23,7 +31,11 @@ uploaded_file = st.file_uploader("Resume PDF डालो", type="pdf")
 
 if uploaded_file and name:
     with st.spinner("Resume पढ़ रहा हूँ..."):
-        resume_text = extract_text_from_pdf(uploaded_file)
+        try:
+            resume_text = extract_text_from_pdf(uploaded_file)
+        except Exception as e:
+            st.error(f"Resume parse error: {e}")
+            st.stop()
     
     st.success("Resume पढ़ लिया! अब Interview शुरू करते हैं")
     
@@ -47,18 +59,24 @@ if uploaded_file and name:
         st.session_state.messages.append({"role": "user", "content": user_input})
         with st.chat_message("assistant"):
             with st.spinner("सोच रहा हूँ..."):
-                response = llm.invoke(st.session_state.messages)
-                answer = response.content
+                try:
+                    response = llm.invoke(st.session_state.messages)
+                    answer = response.content
+                except Exception as e:
+                    answer = f"Error: {e}. Check Groq key."
             st.write(answer)
         st.session_state.messages.append({"role": "assistant", "content": answer})
     
     if st.button("Interview खत्म करो & Report दो"):
         final_prompt = "Give final score out of 100 and detailed feedback in Hindi + English."
         with st.spinner("Report बना रहा हूँ..."):
-            final = llm.invoke(st.session_state.messages + [{"role": "user", "content": final_prompt}])
-            feedback = final.content
-            score = "85"  # बाद में auto calculate करेंगे
-            pdf_bytes, filename = generate_pdf(name, score, feedback)
-            st.balloons()
-            st.success(f"{name} का Score: {score}/100")
-            st.download_button("PDF Report डाउनलोड करो", pdf_bytes, filename, "application/pdf")
+            try:
+                final = llm.invoke(st.session_state.messages + [{"role": "user", "content": final_prompt}])
+                feedback = final.content
+                score = "85"  # बाद में auto calculate करेंगे
+                pdf_bytes, filename = generate_pdf(name, score, feedback)
+                st.balloons()
+                st.success(f"{name} का Score: {score}/100")
+                st.download_button("PDF Report डाउनलोड करो", pdf_bytes, filename, "application/pdf")
+            except Exception as e:
+                st.error(f"Report error: {e}")
