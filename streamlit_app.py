@@ -1,55 +1,55 @@
 import streamlit as st
 
-# Ultra-safe imports
+# No heavy imports – dummy mode first
 PDF_PARSE_AVAILABLE = False
 GROQ_AVAILABLE = False
-try:
-    import PyPDF2
-    from io import BytesIO
-    PDF_PARSE_AVAILABLE = True
-except ImportError:
-    st.warning("PDF parser fallback to dummy.")
+st.warning("Demo Mode Active: Using dummy AI for quick deploy. Uncomment requirements for full Groq.")
 
-try:
-    from langchain_groq import ChatGroq
-    GROQ_AVAILABLE = True
-except ImportError:
-    st.warning("Groq fallback to dummy responses.")
+# Dummy PDF parser (no PyPDF2 needed)
+def dummy_extract_text_from_pdf(file):
+    return "Dummy resume: ML Fresher with Python, TensorFlow, 2 years experience in NLP projects."
 
-from utils.report_generator import generate_pdf  # ये safe है
+# Dummy LLM response function
+def dummy_llm_invoke(messages):
+    return "Demo Response: Excellent! Score 18/20. Your explanation shows strong understanding of regularization. Next Q: What is transfer learning in CNNs?"
 
-# Groq key check
-groq_key = st.secrets.get("GROQ_API_KEY", "")
-llm = None
-if GROQ_AVAILABLE and groq_key and groq_key.startswith("gsk_"):
-    try:
-        llm = ChatGroq(model="llama3-70b-8192", temperature=0.7, groq_api_key=groq_key)  # Model name fix: llama3-70b-8192 (versatile old name issue)
-    except:
-        st.warning("LLM init fallback.")
-else:
-    st.info("Demo mode: Using dummy AI responses.")
+# Report generator (safe, no deps)
+from reportlab.lib.pagesizes import letter
+from reportlab.pdfgen import canvas
+from datetime import datetime
+
+def generate_pdf(name, score, feedback):
+    filename = f"{name}_ML_Interview_Report.pdf"
+    c = canvas.Canvas(filename, pagesize=letter)
+    width, height = letter
+    c.setFillColorRGB(0.2, 0.2, 0.8)
+    c.setFont("Helvetica-Bold", 24)
+    c.drawString(50, height - 100, "ML/AI Interview Report")
+    c.setFont("Helvetica", 14)
+    c.setFillColorRGB(0,0,0)
+    c.drawString(50, height - 150, f"Candidate: {name}")
+    c.drawString(50, height - 180, f"Date: {datetime.now().strftime('%B %d, %Y')}")
+    c.drawString(50, height - 220, f"Score: {score}/100")
+    c.drawString(50, height - 270, "Feedback:")
+    text = c.beginText(70, height - 300)
+    text.setFont("Helvetica", 12)
+    for line in feedback.split('\n'):
+        text.textLine(line)
+    c.drawText(text)
+    c.save()
+    with open(filename, "rb") as f:
+        return f.read(), filename
 
 st.set_page_config(page_title="ML_AI_Interview_Chatbot", layout="centered")
 st.title("🚀 ML_AI_Interview_Chatbot 2025")
-st.markdown("**Resume Upload → Personalized ML/AI Interview → Auto Report**")
+st.markdown("**Resume Upload → Personalized ML/AI Interview → Auto Report** (Demo Mode)")
 
 name = st.text_input("अपना नाम:", placeholder="Sakshi")
 uploaded_file = st.file_uploader("Resume PDF अपलोड करें:", type="pdf")
 
 if name and (uploaded_file or st.button("Demo Mode शुरू करें")):
     with st.spinner("Setup कर रहा हूँ..."):
-        if uploaded_file and PDF_PARSE_AVAILABLE:
-            try:
-                pdf_file = BytesIO(uploaded_file.getvalue())
-                pdf_reader = PyPDF2.PdfReader(pdf_file)
-                resume_text = ""
-                for page in pdf_reader.pages:
-                    resume_text += page.extract_text() + "\n"
-                pdf_file.close()
-            except Exception as e:
-                resume_text = f"Parse error: {e}. Using dummy resume."
-        else:
-            resume_text = "Dummy resume: ML Fresher with Python, TensorFlow experience."
+        resume_text = dummy_extract_text_from_pdf(uploaded_file) if uploaded_file else "Dummy resume text."
 
     st.success("✅ Ready! Interview शुरू।")
 
@@ -70,30 +70,14 @@ if name and (uploaded_file or st.button("Demo Mode शुरू करें")):
 
         with st.chat_message("assistant"):
             with st.spinner("AI सोच रहा है..."):
-                if llm:
-                    try:
-                        response = llm.invoke(st.session_state.messages)
-                        answer = response.content
-                    except Exception as e:
-                        answer = f"Demo: Great! Score 18/20. {e}"  # Fallback
-                else:
-                    answer = "Demo Response: Excellent explanation! L1 for sparsity, L2 for small weights. Score: 18/20. Next Q: Gradient descent variants?"
+                answer = dummy_llm_invoke(st.session_state.messages)
             st.write(answer)
         st.session_state.messages.append({"role": "assistant", "content": answer})
 
     # Report button
     if len(st.session_state.messages) > 2 and st.button("🔚 Interview End & Report Generate"):
         with st.spinner("Report तैयार कर रहा हूँ..."):
-            if llm:
-                final_prompt = [{"role": "user", "content": "Summarize interview: Score /100, feedback in Hindi/English, tips."}]
-                try:
-                    final = llm.invoke(final_prompt)
-                    feedback = final.content
-                except:
-                    feedback = "Demo Feedback: Strong basics (85/100). Improve on optimization. Hindi: अच्छा प्रयास!"
-            else:
-                feedback = "Demo Feedback: 85/100 - Good ML knowledge. Practice coding interviews. Hindi: ML concepts मजबूत हैं!"
-
+            feedback = "Demo Feedback: Strong ML concepts (85/100). Improve on deployment. Hindi: अच्छा प्रयास, practice करें!"
             score = "85"
             try:
                 pdf_bytes, filename = generate_pdf(name, score, feedback)
@@ -105,3 +89,7 @@ if name and (uploaded_file or st.button("Demo Mode शुरू करें")):
 
 else:
     st.info("👆 नाम डालें और PDF अपलोड करें (या Demo Mode दबाएँ)।")
+
+# Uncomment for full features (after deploy success)
+# if st.checkbox("Enable Full Groq Mode (Re-deploy after uncommenting requirements)"):
+#     st.info("Uncomment langchain/groq in requirements.txt and re-deploy.")
