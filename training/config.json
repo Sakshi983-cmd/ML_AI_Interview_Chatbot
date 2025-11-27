@@ -1,7 +1,0 @@
-{
-  "model_name": "gpt2",
-  "batch_size": 8,
-  "epochs": 3,
-  "learning_rate": 2e-4,
-  "save_dir": "./lora_mlchatbot"
-}
