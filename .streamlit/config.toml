@@ -6,3 +6,4 @@ textColor = "#e2e8f0"
 
 [server]
 maxUploadSize = 10
+headless = true
