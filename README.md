@@ -1,5 +1,6 @@
-🚀 Fully Functional ML/AI Interview Preparation Bot
+ 🚀 Fully Functional ML/AI Interview Preparation Bot
 A production-ready, voice-enabled and text-based AI interview chatbot designed for ML/AI aspirants and engineers. The system is resume-aware, auto-scores answers, and provides GenAI-powered chat guidance.
+
  LOOM DEMO VIDEO- https://www.loom.com/share/1a90ecb0958a48f6bd88c9362c3da381
 Features
 
